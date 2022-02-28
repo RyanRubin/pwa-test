@@ -1,1 +1,25 @@
-<p>user-list works!</p>
+<div class="row">
+  <div class="col">
+    <h5>User List</h5>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Login</th>
+          <th>Avatar</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of users">
+        <tr>
+          <td><a [routerLink]="['/user-details',user.login]">{{user.login}}</a></td>
+          <td><img style="height: 50px;" src="{{user.avatar_url}}" alt="{{user.login}}"></td>
+          <td>{{user.type}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

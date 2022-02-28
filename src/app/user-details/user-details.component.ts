@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-details',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDetailsComponent implements OnInit {
 
-  constructor() { }
+  user: User | undefined;
+
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
+    const login = this.route.snapshot.paramMap.get('login');
+    if (login) {
+      this.userService.getUser(login).subscribe((res: any) => { this.user = res; });
+    }
   }
 
 }
